@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledDataItem = styled.div`
   display: flex;
@@ -20,16 +20,4 @@ const Label = styled.span`
   }
 `;
 
-function DataItem({ icon, label, children }) {
-  return (
-    <StyledDataItem>
-      <Label>
-        {icon}
-        <span>{label}</span>
-      </Label>
-      {children}
-    </StyledDataItem>
-  );
-}
-
-export default DataItem;
+export { StyledDataItem, Label };

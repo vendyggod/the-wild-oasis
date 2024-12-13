@@ -1,10 +1,9 @@
-import { Outlet } from 'react-router';
-import { Header, Sidebar } from './';
 import styled from 'styled-components';
 
 const Main = styled.main`
   background-color: var(--color-grey-50);
   padding: 4rem 4.8rem 6.4rem;
+  overflow: scroll;
 `;
 
 const StyledAppLayout = styled.div`
@@ -22,18 +21,4 @@ const Container = styled.div`
   gap: 3.2rem;
 `;
 
-function AppLayout() {
-  return (
-    <StyledAppLayout>
-      <Header />
-      <Sidebar />
-      <Main>
-        <Container>
-          <Outlet />
-        </Container>
-      </Main>
-    </StyledAppLayout>
-  );
-}
-
-export default AppLayout;
+export { Main, StyledAppLayout, Container };
