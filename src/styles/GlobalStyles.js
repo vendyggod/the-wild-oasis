@@ -67,6 +67,11 @@ export const GlobalStyles = createGlobalStyle`
   transition: background-color 0.3s, border 0.3s;
 }
 
+/* Hide scrollbars */
+*::-webkit-scrollbar {
+  display: none;
+}
+
 html {
   font-size: 62.5%;
 }
