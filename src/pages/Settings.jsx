@@ -1,7 +1,13 @@
-import { Heading } from '../shared/ui/';
+import UpdateSettingsForm from '../features/settings/UpdateSettingsForm';
+import { Heading, Row } from '../shared/ui/';
 
 function Settings() {
-  return <Heading as="h1">Update hotel settings</Heading>;
+  return (
+    <Row>
+      <Heading as="h1">Update hotel settings</Heading>
+      <UpdateSettingsForm />
+    </Row>
+  );
 }
 
 export default Settings;
