@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { useMoveBack } from '../hooks/useMoveBack';
-import { Heading } from '../ui/';
+import { useMoveBack } from '../shared/hooks/useMoveBack';
+import { Heading } from '../shared/ui/';
 
 const StyledPageNotFound = styled.main`
   height: 100vh;

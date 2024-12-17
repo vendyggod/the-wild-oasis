@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import CabinTable from '../features/cabins/CabinTable';
-import { Button, Heading, Row } from '../ui';
-import CreateCabinForm from '../features/cabins/CreateCabinForm';
+import CabinTable from '../features/cabins/CabinTable/CabinTable';
+import { Button, Heading, Row } from '../shared/ui';
+import CreateCabinForm from '../features/cabins/CreateCabinForm/CreateCabinForm';
 
 function Cabins() {
   const [showForm, setShowForm] = useState(false);

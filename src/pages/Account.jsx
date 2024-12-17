@@ -1,4 +1,4 @@
-import { Heading, Row } from '../ui';
+import { Heading, Row } from '../shared/ui';
 
 function Account() {
   return (
