@@ -1,5 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
-import { AppLayout } from '../../ui';
+import { AppLayout } from '../../shared/ui';
 import {
   Account,
   Bookings,
