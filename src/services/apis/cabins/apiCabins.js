@@ -12,24 +12,35 @@ export async function getCabins() {
   return data;
 }
 
-export async function createCabin(newCabin) {
+export async function createEditCabin(newCabin, id) {
+  const hasImagePath = newCabin.image?.startsWith?.(supabaseUrl);
   const imageName = `${Math.random()}-${newCabin.image.name}`.replaceAll(
     '/',
     ''
   );
-  const imagePath = `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`;
+  const imagePath = hasImagePath
+    ? newCabin.image
+    : `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`;
 
-  // 1) Create cabin
-  const { data, error } = await supabase
-    .from('cabins')
-    .insert([{ ...newCabin, image: imagePath }]);
+  // 1) Create/edit cabin
+  let query = supabase.from('cabins');
+
+  // a) For creation
+  if (!id) query = query.insert([{ ...newCabin, image: imagePath }]);
+
+  // b) For editing
+  if (id) query = query.update({ ...newCabin, image: imagePath }).eq('id', id);
+
+  const { data, error } = await query.select().single();
 
   if (error) {
     console.error(error);
     throw new Error('Cabin could not be created');
   }
 
-  // 2) Upload image to the storage
+  // 2) Upload image to the storage. If newCabin.image already exists - stop execution
+  if (hasImagePath) return data;
+
   const { error: storageError } = await supabase.storage
     .from('cabin-images')
     .upload(imageName, newCabin.image);
@@ -41,7 +52,6 @@ export async function createCabin(newCabin) {
       'Could not create a cabin since there is an error with image uploading'
     );
   }
-
   return data;
 }
 
@@ -59,15 +69,30 @@ export async function deleteCabin(id) {
     throw new Error('Cabin could not be deleted');
   }
 
-  // 2) Delete the image
-  const cabinImageName = cabinImageUrl.image.split('/').at(-1);
-  const { error: storageError } = await supabase.storage
-    .from('cabin-images')
-    .remove([cabinImageName]);
+  // Check if the image path is used by another rows
+  const { data: imageColumn, error: columnImageError } = await supabase
+    .from('cabins')
+    .select('id, image');
 
-  if (storageError) {
-    console.error(storageError);
-    throw new Error('Cabin could not be deleted');
+  if (columnImageError)
+    throw new Error('An error has occured deleting the assosiated image');
+
+  const isImagePathUsed = imageColumn.some(
+    (cabinImage) =>
+      cabinImage.image === cabinImageUrl.image && cabinImage.id !== id
+  );
+
+  // 2) Delete the image
+  if (!isImagePathUsed) {
+    const cabinImageName = cabinImageUrl.image.split('/').at(-1);
+    const { error: storageError } = await supabase.storage
+      .from('cabin-images')
+      .remove([cabinImageName]);
+
+    if (storageError) {
+      console.error(storageError);
+      throw new Error('Cabin could not be deleted');
+    }
   }
 
   // 3) Delete the cabin row based on cabin ID
