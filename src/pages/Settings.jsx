@@ -1,5 +1,5 @@
-import UpdateSettingsForm from '../features/settings/UpdateSettingsForm';
-import { Heading, Row } from '../shared/ui/';
+import UpdateSettingsForm from '../features/settings/ui/UpdateSettingsForm';
+import { Heading, Row } from '../shared/ui';
 
 function Settings() {
   return (

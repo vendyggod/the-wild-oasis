@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { useCreateCabin, useDeleteCabin } from '../../../model/cabins/';
+import { useCreateCabin, useDeleteCabin } from '../model';
 import { formatCurrency } from '../../../shared/utils/helpers';
 import { TableRow, Img, Cabin, Price, Discount } from './CabinRow.styles';
 import { HiPencil, HiSquare2Stack, HiTrash } from 'react-icons/hi2';
-import EditCabinForm from '../EditCabinForm/EditCabinForm';
+import EditCabinForm from './EditCabinForm';
 
 function CabinRow({ cabin }) {
   const [showForm, setShowForm] = useState(false);

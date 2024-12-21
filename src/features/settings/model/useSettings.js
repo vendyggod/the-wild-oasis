@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getSettings } from '../../services/apis/settings/apiSettings';
+import { getSettings } from '../../../services/apis/settings/apiSettings';
 
 function useSettings() {
   const {

@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import useEditCabin from '../../../model/cabins/useEditCabin';
+import useEditCabin from '../model/useEditCabin';
 import {
   Input,
   Form,

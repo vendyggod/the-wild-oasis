@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { updateSetting as updateSettingApi } from '../../services/apis/settings/apiSettings';
+import { updateSetting as updateSettingApi } from '../../../services/apis/settings/apiSettings';
 import toast from 'react-hot-toast';
 
 function useUpdateSetting() {

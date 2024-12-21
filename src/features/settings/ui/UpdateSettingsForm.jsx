@@ -1,6 +1,6 @@
-import useSettings from '../../model/settings/useSettings';
-import useUpdateSetting from '../../model/settings/useUpdateSetting';
-import { Form, FormRow, Input, Spinner } from '../../shared/ui';
+import useSettings from '../model/useSettings';
+import useUpdateSetting from '../model/useUpdateSetting';
+import { Form, FormRow, Input, Spinner } from '../../../shared/ui';
 
 function UpdateSettingsForm() {
   const {

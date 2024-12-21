@@ -1,6 +1,6 @@
-import useCabins from '../../../model/cabins/useCabins';
+import useCabins from '../model/useCabins';
 import { Spinner } from '../../../shared/ui';
-import CabinList from '../CabinList/CabinList';
+import CabinList from './CabinList';
 import { Table, TableHeader } from './CabinTable.styles';
 
 function CabinTable() {
