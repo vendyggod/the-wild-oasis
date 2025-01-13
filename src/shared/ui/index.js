@@ -16,7 +16,7 @@ import Input from './Input/Input';
 import Logo from './Logo/Logo';
 import MainNav from './MainNav/MainNav';
 // import Menus from './Menus';
-// import Modal from './Modal';
+import Modal from './Modal/Modal';
 // import Pagination from './Pagination';
 import Row from './Row/Row';
 import FormRow from './FormRow/FormRow';
@@ -52,7 +52,7 @@ export {
   Logo,
   MainNav,
   // Menus,
-  // Modal,
+  Modal,
   // Pagination,
   Row,
   FormRow,

@@ -9,7 +9,7 @@ import {
   FormRow,
 } from '../../../shared/ui';
 
-function CreateCabinForm() {
+function CreateCabinForm({ onCloseModal }) {
   const { register, handleSubmit, getValues, reset, formState } = useForm();
   const { errors } = formState;
   const { createCabin, isCreating } = useCreateCabin();
@@ -18,7 +18,10 @@ function CreateCabinForm() {
     createCabin(
       { ...data, image: data.image[0] },
       {
-        onSuccess: () => reset(),
+        onSuccess: () => {
+          reset();
+          onCloseModal();
+        },
       }
     );
   }
@@ -29,7 +32,7 @@ function CreateCabinForm() {
   // }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(onSubmit)} type={onCloseModal && 'modal'}>
       <FormRow label="Cabin name" error={errors?.name?.message}>
         <Input
           type="text"

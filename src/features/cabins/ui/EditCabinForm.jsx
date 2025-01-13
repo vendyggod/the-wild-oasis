@@ -7,6 +7,7 @@ import {
   FileInput,
   TextArea,
   FormRow,
+  Modal,
 } from '../../../shared/ui';
 
 function EditCabinForm({ cabinToEdit, onShowForm }) {
